@@ -6,7 +6,7 @@
 		
 		public function __construct(){
 
-			$this->conn = new PDO("sqlsrv:Database=dbphp7;Server=localhost;ConnectionPooling=0","sa","Mateus76!94#");
+			$this->conn = new PDO("sqlsrv:Database=dbphp7;Server=localhost;ConnectionPooling=0","sa","Ma76!94#");
 			
 			// o $this identifica o instanciamento de uma variável global
 			// com isso, sempre que a classe for instanciada (new Sql) a conexão com o banco de dados será realizada automaticamente
