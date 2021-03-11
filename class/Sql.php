@@ -12,20 +12,28 @@
 			// com isso, sempre que a classe for instanciada (new Sql) a conexão com o banco de dados será realizada automaticamente
 		}
 
-		private function setParam($statment,$key,$value){ // para o caso de somente um parâmetro e é um método que substitui o bindParam no setParams
-
-			$statment->bindParam($key,$value);
-
-		}
-
-		private function setParams($statment,$parameters = array()){ // para o caso de diversos parâmetros
+		private function setParams($statement,$parameters = array()){ // para o caso de diversos parâmetros
 
 			foreach ($parameters as $key => $value){
 
-				$this->setParam($key,$value); // substitui vários bindParam
+				$this->setParam($statement,$key,$value); // substitui vários bindParam
 				
 			}
 		} 
+
+		private function setParam($statement,$key,$value){ // para o caso de somente um parâmetro e é um método que substitui o bindParam no setParams
+
+			$statement->bindParam($key,$value);
+
+		}
+
+		public function select($rawQuery,$params = array()):array{ // o método retorna um array
+
+			$stmt = $this->query($rawQuery,$params); // recebe o $stmt do método query
+
+			return $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+		}
 
 		public function query($rawQuery,$params = array()){
 
@@ -37,14 +45,6 @@
 			$stmt->execute();
 	
 			return $stmt;
-		}
-
-		public function select($rawQuery,$params = array()):array{ // o método retorna um array
-
-			$stmt = $this->query($rawQuery,$params); // recebe o $stmt do método query
-
-			return $stmt->fetchAll(PDO::FETCH_ASSOC);
-
 		}
 
 	}
