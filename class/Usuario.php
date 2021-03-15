@@ -142,6 +142,22 @@
 
 /*----------------------------------------------------------------------*/
 
+		public function delete(){
+
+			$sql = new Sql();
+
+			$sql->query("DELETE FROM tb_usuarios WHERE idusuario = :ID", array(
+				':ID'=>$this->getIdusuario()
+			));
+
+			// apagou do BD, mas ainda consta no objeto. Para zerar:
+			$this->setIdusuario(0);
+			$this->setDeslogin("");
+			$this->setDessenha("");
+			$this->setDtcadastro(new DateTime());
+		}
+
+/*----------------------------------------------------------------------*/
 		public function __construct($login ="", $senha = ""){ // ="" indica que o valor padrão é vazio
 
 			$this->setDeslogin($login);

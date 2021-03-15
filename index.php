@@ -46,11 +46,23 @@
 
 // atualiza registro na tabela
 
-$usuario = new Usuario();
+/*$usuario = new Usuario();
 
 $usuario->loadbyId(3);
 
 $usuario->update("professor", "senha2");
+
+echo $usuario;*/
+
+/*-----------------------------------------------------------*/
+
+// deleta registro ma tabela
+
+$usuario = new Usuario();
+
+$usuario->loadbyId(5);
+
+$usuario->delete();
 
 echo $usuario;
 
